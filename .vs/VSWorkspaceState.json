@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\dotnet",
+    "\\dotNetTrainingAttendance",
+    "\\NewRepo2"
   ],
-  "SelectedNode": "\\GMAP",
+  "SelectedNode": "\\NewRepo2",
   "PreviewInSolutionExplorer": false
 }
