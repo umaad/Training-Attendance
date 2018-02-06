@@ -11,11 +11,59 @@
     <link href="Contents/bootstrap.css" rel="stylesheet" />
     <script src="Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="Scripts/Activity.js"></script>
-    <script src="Scripts/Login.js"></script>
-   <%-- $(function () {  
-        var name = 'Welcome ' + ' <%= Session["UserName"] %>'  
-        $('#txtUserName').text(name)  
-        });--%>
+   
+ <script>
+     $(document).ready(function () {
+
+         alert('from activity.aspx ready function');
+         loadAllData();
+     });
+
+     function loadAllData() {
+         var name = '<%=Session["ActiveUser"]%>';
+         alert('Welcome ' + name);
+         $.ajax({
+             url: "Activity.aspx/getStudentByUsername",
+             data: '{name: ' + JSON.stringify(name) + '}',
+             type: "Post",
+             contentType: "application/json; charset=utf-8",
+             datatype: "jsondata",
+             success: function (response) {
+                 var customers = response.d;
+                 var html = '';
+
+                 html += '<tr>';
+                 html += '<td>Name:</td>';
+                 html += '<td>' + customers.Username + '</td>';
+                 html += '</tr>';
+                 html += '<tr>';
+                 html += '<td>Address:</td>';
+                 html += '<td>' + customers.Address + '</td>';
+                 html += '</tr>';
+                 html += '<tr>';
+                 html += '<td>Contact No:</td>';
+                 html += '<td>' + customers.ContactNo + '</td>';
+                 html += '</tr>';
+                 html += '<tr>';
+                 html += '<td>Designation:</td>';
+                 html += '<td>' + customers.Designation + '</td>';
+                 html += '</tr>';
+                 html += '<tr>';
+                 html += '<td>Joining Date:</td>';
+                 html += '<td>' + customers.joiningDate + '</td>';
+                 html += '</tr>';
+
+
+                 $('.yourInfo').html(html);
+             },
+             error: function (errormessage) {
+                 alert(errormessage.responseText);
+             }
+         });
+
+     }
+
+ </script>
 </head>
     
 <body>

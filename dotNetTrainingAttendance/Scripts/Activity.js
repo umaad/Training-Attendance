@@ -5,55 +5,12 @@
 
 
 $(document).ready(function () {
-   loadAllData();
+    
    
+ 
 });
 
 
-
-function loadAllData() {
-    var name = 'Welcome'+'<%=Session["UserName"]%>'
-    var id = 1;
-    $.ajax({
-        url: "Activity.aspx/getStudentByID",
-        data: '{id: ' + JSON.stringify(id) + '}',
-        type: "Post",
-        contentType: "application/json; charset=utf-8",
-        datatype: "jsondata",
-        success: function (response) {
-            var customers = response.d;
-             var html = '';
-            
-                html += '<tr>';
-                    html += '<td>Name:</td>';
-                    html += '<td>' + customers.Username + '</td>';
-                html += '</tr>';
-                html += '<tr>';
-                    html += '<td>Address:</td>';
-                    html += '<td>' + customers.Address + '</td>';
-                html += '</tr>';
-                html += '<tr>';
-                    html += '<td>Contact No:</td>';
-                    html += '<td>' + customers.ContactNo + '</td>';
-                html += '</tr>';
-                html += '<tr>';
-                    html += '<td>Designation:</td>';
-                    html += '<td>' + customers.Designation + '</td>';
-                html += '</tr>';
-                html += '<tr>';
-                    html += '<td>Joining Date:</td>';
-                    html += '<td>' + customers.joiningDate + '</td>';
-                html += '</tr>';
-                
-           
-            $('.yourInfo').html(html);
-        },
-        error: function (errormessage) {
-            alert(errormessage.responseText);
-        }
-    });
-
-}
 
 function getToken() {
  
@@ -81,12 +38,13 @@ function confirmToken()
     alert('from confirm token function '+myToken);
     $.ajax({
         url: "Activity.aspx/matchToken",
-        data: '{token:'+JSON.stringify(myToken)+'}',
+        data: '{newtoken:'+JSON.stringify(myToken)+'}',
         type: "Post",
         contentType: "application/json;charset=UTF-8",
         // dataType: "json",
         success: function (response) {
-            if (response) {
+            var result = response.d;
+            if (result) {
                 var html = '';
                 html += 'Attendance Request is Accepted';
             }

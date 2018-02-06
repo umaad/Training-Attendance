@@ -25,7 +25,9 @@
     <link href="Contents/bootstrap.css" rel="stylesheet" />
     <script src="Scripts/jquery.unobtrusive-ajax.js"></script>
     <script src="Scripts/Login.js"></script>
-      
+      <script>
+
+      </script>
 </head>
 <body>
     <form id="form1" runat="server">
